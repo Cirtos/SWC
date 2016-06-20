@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ea5e7eec57d49a946b22c4d8d4d70600
+timeCreated: 1466257413
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - ameAnthem: {fileID: 8300000, guid: 43dbf0316e64e904db935a2ce479d1e3, type: 3}
+  - rusAnthem: {fileID: 8300000, guid: d2e443918cb032543a3d9b61645854ac, type: 3}
+  - audioSource: {fileID: 8213982, guid: edfd39d3b89513f428865069b57a03da, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
