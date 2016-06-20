@@ -37,7 +37,7 @@ public class Button : MonoBehaviour
             
                 if (!pressed)
                 {
-                    if (Input.GetAxis(axesName) >= 0.5)
+                    if (Input.GetButtonDown(axesName))
                     {
                         if (buttonRangeCheck <= buttonRange)
                         {
