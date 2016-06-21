@@ -10,6 +10,8 @@ public class Button : MonoBehaviour
     public GameObject enemyHand;
     public GameObject playerHand;
     public float buttonRange;
+	public AudioClip ButtonSound;
+	private AudioSource source;
 
     private SpriteRenderer spRend;
     private GameManager gManager;
@@ -23,6 +25,7 @@ public class Button : MonoBehaviour
     {
         spRend = GetComponent<SpriteRenderer>();
         gManager = FindObjectOfType<GameManager>();
+		source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,11 +47,14 @@ public class Button : MonoBehaviour
                             if (defendRangeCheck > buttonRange)
                             {
                                 pressed = true;
+								source.PlayOneShot(ButtonSound);
                                 spRend.sprite = buttonPressed;
                                 if (isRussia)
+									
                                     gManager.ameButtonCount++;
-                                else
+                                else 
                                     gManager.rusButtonCount++;
+									
                             }
                         }
                     }
