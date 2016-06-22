@@ -7,7 +7,6 @@ public class SecondTimer : MonoBehaviour {
     public float roundTime;
     
     private string textTime;
-    private GameManager gmanager;
     private Text uiText;
     private float minutes;
     private float seconds;
@@ -17,7 +16,6 @@ public class SecondTimer : MonoBehaviour {
     // Use this for initialization
     void Start () {
         uiText = GetComponent<Text>();
-        gmanager = FindObjectOfType<GameManager>();
 	}
 
     void Update()
@@ -29,8 +27,6 @@ public class SecondTimer : MonoBehaviour {
         fraction = (roundTime * 100) % 100;
         textTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, fraction);
         uiText.text = textTime;
-        if (gmanager.ameButtonCount == 5 || gmanager.rusButtonCount == 5)
-            rolling = false;
         if (roundTime < 0)
         {
             rolling = false;
@@ -43,5 +39,10 @@ public class SecondTimer : MonoBehaviour {
         //set up this way to only fire once
         // should also fix expire timer
         rolling = true;
+    }
+
+    public void StopTimer()
+    {
+        rolling = false;
     }
 }

@@ -9,14 +9,12 @@ public class GameManager : MonoBehaviour {
     public GameObject rusAnthem;
     public int rusButtonCount;
     public int ameButtonCount;
-    public static GameManager instance = null;
     public bool gameoveryeh;
     public GameObject muricawin;
     public GameObject ruskieswin;
     public Text rusNumber;
     public Text murNumber;
-    public GameObject afterGameButton1;
-    public GameObject afterGameButton2;
+    public GameObject afterGameButtons;
     public GameObject startBoundaries;
     public bool gameStart;
     public SecondTimer levelTimer;
@@ -25,18 +23,11 @@ public class GameManager : MonoBehaviour {
 
     void Awake()
     {
-        /*if (instance == null)            
-            instance = this;        
-        else if (instance != this)
-           // Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);*/
-
         ameAnthem.SetActive(false);
         rusAnthem.SetActive(false);
         ruskieswin.SetActive(false);
         muricawin.SetActive(false);
-        afterGameButton1.SetActive(false);
-        afterGameButton2.SetActive(false);
+        afterGameButtons.SetActive(false);
 
         startTime = Time.time;
         gameStart = true;
@@ -44,8 +35,9 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
 
-        rusNumber.text = "0" + rusButtonCount.ToString();
-        murNumber.text = "0" + ameButtonCount.ToString();
+        //Set the number to how many of own buttons pressed by enemy
+        rusNumber.text = "0" + ameButtonCount.ToString();
+        murNumber.text = "0" + rusButtonCount.ToString();
 
         if (rusButtonCount >= 5 || ameButtonCount >= 5)
         {
@@ -54,6 +46,7 @@ public class GameManager : MonoBehaviour {
                 rusAnthem.SetActive(true);
                 ruskieswin.SetActive(true);
                 gameoveryeh = true;
+                levelTimer.StopTimer();
             }
 
             else if (ameButtonCount >= 5)
@@ -61,16 +54,13 @@ public class GameManager : MonoBehaviour {
                 ameAnthem.SetActive(true);
                 muricawin.SetActive(true);
                 gameoveryeh = true;
+                levelTimer.StopTimer();
             }
-
-            if (Input.GetButtonDown("America_Fire") || Input.GetButtonDown("Russia_Fire"))
-                    Application.LoadLevel("Title");
         }
 
         if(gameoveryeh)
         {
-            afterGameButton1.SetActive(true);
-            afterGameButton2.SetActive(true);
+            afterGameButtons.SetActive(true);
         }
 
         if(Time.time > (startTime + startDelay))

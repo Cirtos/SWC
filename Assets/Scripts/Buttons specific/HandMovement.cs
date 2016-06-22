@@ -38,7 +38,7 @@ public class HandMovement : MonoBehaviour
             {
                 if (Input.GetAxis(axesName) >= 0.5)
                 {
-                        anim.SetTrigger("RusPressed");
+                     anim.SetTrigger("RusPressed");
                 }
             }
             else if (!isRussia)
