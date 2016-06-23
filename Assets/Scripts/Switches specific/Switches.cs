@@ -10,7 +10,6 @@ public class Switches : MonoBehaviour {
     public bool isNuke;
 
     private bool press;
-    private bool primed;
     private SpriteRenderer sprite;
     private SwitchesGameManager gManager;
 
@@ -24,34 +23,32 @@ public class Switches : MonoBehaviour {
 	void Update () {
         if (isNuke)
         {
-            if (isRussia)
+            if (!gManager.gameOver)
             {
-                if (gManager.rusSwitches == 6)
+                if (isRussia)
                 {
-                    primed = true;
-                    sprite.sprite = notPressed;
+                    if (gManager.rusSwitches == 6)
+                    {
+                        sprite.sprite = notPressed;
+                    }
+                    else
+                    {
+                        sprite.sprite = nukeUnprimed;
+                    }
                 }
-                else
+                if (!isRussia)
                 {
-                    primed = false;
-                    sprite.sprite = nukeUnprimed;
-                }
-            }
-            if (!isRussia)
-            {
-                if (gManager.ameSwitches == 6)
-                {
-                    primed = true;
-                    sprite.sprite = notPressed;
-                }
-                else
-                {
-                    primed = false;
-                    sprite.sprite = nukeUnprimed;
+                    if (gManager.ameSwitches == 6)
+                    {
+                        sprite.sprite = notPressed;
+                    }
+                    else
+                    {
+                        sprite.sprite = nukeUnprimed;
+                    }
                 }
             }
         }
-
     }
 
     public void Pressed()
@@ -88,6 +85,7 @@ public class Switches : MonoBehaviour {
             if (gManager.rusSwitches == 6)
             {
                 gManager.NukePressed("Russia");
+                sprite.sprite = pressed;
             }
         }
         if (!isRussia)
@@ -95,6 +93,7 @@ public class Switches : MonoBehaviour {
             if (gManager.ameSwitches == 6)
             {
                 gManager.NukePressed("America");
+                sprite.sprite = pressed;
             }
         }
     }

@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour {
     public GameObject ruskieswin;
     public Text rusNumber;
     public Text murNumber;
+    public Text countdown;
     public GameObject afterGameButtons;
     public GameObject startBoundaries;
     public bool gameStart;
     public SecondTimer levelTimer;
+    public Background_Music bg;
 
     private float startTime;
 
@@ -35,6 +37,22 @@ public class GameManager : MonoBehaviour {
 	
 	void Update () {
 
+        if (gameStart)
+        {
+            float cdf = Mathf.Ceil((startTime + startDelay) - Time.time);
+            int cd = (int)cdf;
+            countdown.text = cd.ToString();
+            if (cd == 0)
+            {
+                countdown.text = "Go!";
+            }
+        }
+
+        if (((startTime + startDelay) - Time.time) < -1)
+        {
+            countdown.text = "";
+        }
+
         //Set the number to how many of own buttons pressed by enemy
         rusNumber.text = "0" + ameButtonCount.ToString();
         murNumber.text = "0" + rusButtonCount.ToString();
@@ -45,17 +63,17 @@ public class GameManager : MonoBehaviour {
             {
                 rusAnthem.SetActive(true);
                 ruskieswin.SetActive(true);
-                gameoveryeh = true;
-                levelTimer.StopTimer();
             }
 
             else if (ameButtonCount >= 5)
             {
                 ameAnthem.SetActive(true);
                 muricawin.SetActive(true);
-                gameoveryeh = true;
-                levelTimer.StopTimer();
             }
+
+            gameoveryeh = true;
+            levelTimer.StopTimer();
+            bg.Victory();
         }
 
         if(gameoveryeh)

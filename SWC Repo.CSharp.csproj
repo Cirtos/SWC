@@ -77,11 +77,12 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\America Hands\America_Hand_Attack.cs" />
     <Compile Include="Assets\Scripts\America Hands\America_Hand_Defend.cs" />
+    <Compile Include="Assets\Scripts\Background_Music.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\Button.cs" />
+    <Compile Include="Assets\Scripts\Buttons specific\Face_Manager_Murica.cs" />
+    <Compile Include="Assets\Scripts\Buttons specific\Face_Manager_Russia.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\GameManager.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\HandMovement.cs" />
-    <Compile Include="Assets\Scripts\Face_Manager_Murica.cs" />
-    <Compile Include="Assets\Scripts\Face_Manager_Russia.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\Menu_Change.cs" />
     <Compile Include="Assets\Scripts\Menu_Confirm_Transition.cs" />
@@ -89,9 +90,12 @@
     <Compile Include="Assets\Scripts\Russia Hands\Russia_Hand_Defend.cs" />
     <Compile Include="Assets\Scripts\SecondTimer.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\Switches specific\NukeCover.cs" />
     <Compile Include="Assets\Scripts\Switches specific\Switches.cs" />
     <Compile Include="Assets\Scripts\Switches specific\SwitchesGameManager.cs" />
     <Compile Include="Assets\Scripts\Switches specific\SwitchesHandMovement.cs" />
+    <Compile Include="Assets\Scripts\Switches specific\Switches_Face_Manager_Murica.cs" />
+    <Compile Include="Assets\Scripts\Switches specific\Switches_Face_Manager_Russia.cs" />
     <Compile Include="Assets\Scripts\TimedChange.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
