@@ -5,6 +5,7 @@ public class Buttons_Reset : MonoBehaviour {
 
     public float resetTime;
     public Button[] buttons;
+    public bool isRussia;
 
     private bool focus;
     private string colTag;
@@ -20,11 +21,12 @@ public class Buttons_Reset : MonoBehaviour {
 
         if (focus == true)
         {
-            if (colTag == "Russia")
+            if (colTag == "Russia" && isRussia)
             {
+                if (Input.GetButtonDown("P2 Fire"))
+                    buttonDown = Time.time;
                 if (Input.GetButton("P2 Fire"))
                 {
-                    buttonDown = Time.time;
                     if (Time.time > (buttonDown + resetTime))
                     {
                         foreach(Button button in buttons)
@@ -34,8 +36,10 @@ public class Buttons_Reset : MonoBehaviour {
                     }
                 }
             }
-            else if (colTag == "America")
+            else if (colTag == "America" && !isRussia)
             {
+                if (Input.GetButtonDown("P1 Fire"))
+                    buttonDown = Time.time;
                 if (Input.GetButton("P1 Fire"))
                 {
                     buttonDown = Time.time;
@@ -49,7 +53,6 @@ public class Buttons_Reset : MonoBehaviour {
                 }
             }
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D col)

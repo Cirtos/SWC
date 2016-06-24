@@ -66,12 +66,20 @@ public class Button : MonoBehaviour
         if (side == "America" && !isRussia)
         {
             spRend.sprite = buttonUnpressed;
-            gManager.ameButtonCount--;
+            if (pressed)
+            {
+                gManager.rusButtonCount--;
+                pressed = false;
+            }
         }
         else if (side == "Russia" && isRussia)
         {
             spRend.sprite = buttonUnpressed;
-            gManager.rusButtonCount--;
-        } 
+            if (pressed)
+            {
+                gManager.ameButtonCount--;
+                pressed = false;
+            }
+        }
     }
 }
