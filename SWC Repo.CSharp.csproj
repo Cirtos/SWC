@@ -79,10 +79,12 @@
     <Compile Include="Assets\Scripts\America Hands\America_Hand_Defend.cs" />
     <Compile Include="Assets\Scripts\Background_Music.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\Button.cs" />
+    <Compile Include="Assets\Scripts\Buttons specific\Buttons_Reset.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\Face_Manager_Murica.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\Face_Manager_Russia.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\GameManager.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\HandMovement.cs" />
+    <Compile Include="Assets\Scripts\ExitButton.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\Menu_Change.cs" />
     <Compile Include="Assets\Scripts\Menu_Confirm_Transition.cs" />

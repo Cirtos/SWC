@@ -8,13 +8,16 @@ public class Switches : MonoBehaviour {
     public Sprite pressed;
     public bool isRussia;
     public bool isNuke;
+    public AudioClip buttonSound;
 
     private bool press;
     private SpriteRenderer sprite;
     private SwitchesGameManager gManager;
+    private AudioSource source;
 
 	// Use this for initialization
 	void Start () {
+        source = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
         gManager = FindObjectOfType<SwitchesGameManager>();
 	}
@@ -62,6 +65,7 @@ public class Switches : MonoBehaviour {
         {
             sprite.sprite = pressed;
             press = true;
+            source.PlayOneShot(buttonSound);
             if (isRussia)
                 gManager.rusSwitches++;
             else
@@ -71,6 +75,7 @@ public class Switches : MonoBehaviour {
         {
             sprite.sprite = notPressed;
             press = false;
+            source.PlayOneShot(buttonSound);
             if (isRussia)
                 gManager.rusSwitches--;
             else

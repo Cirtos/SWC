@@ -36,14 +36,14 @@ public class HandMovement : MonoBehaviour
         {
             if (isRussia)
             {
-                if (Input.GetAxis(axesName) >= 0.5)
+                if (Input.GetButtonDown(axesName))
                 {
                      anim.SetTrigger("RusPressed");
                 }
             }
             else if (!isRussia)
             {
-                if (Input.GetAxis(axesName) >= 0.5)
+                if (Input.GetButtonDown(axesName))
                 {
                     anim.SetTrigger("MurPressed");
                 }

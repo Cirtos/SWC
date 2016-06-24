@@ -5,6 +5,7 @@ public class Button : MonoBehaviour
 {
 
     public string axesName;
+    public Sprite buttonUnpressed;
     public Sprite buttonPressed;
     public bool isRussia;
     public GameObject enemyHand;
@@ -36,16 +37,15 @@ public class Button : MonoBehaviour
         defendRangeCheck = Vector2.Distance(playerHand.transform.position, transform.position);
 
         if (!gManager.gameoveryeh)
-        {
-            
-                if (!pressed)
+        {            
+            if (!pressed)
+            {
+                if (Input.GetButtonDown(axesName))
                 {
-                    if (Input.GetButtonDown(axesName))
+                    if (buttonRangeCheck <= buttonRange)
                     {
-                        if (buttonRangeCheck <= buttonRange)
+                        if (defendRangeCheck > buttonRange)
                         {
-                            if (defendRangeCheck > buttonRange)
-                            {
                                 pressed = true;
 								source.PlayOneShot(ButtonSound);
                                 spRend.sprite = buttonPressed;
@@ -54,11 +54,24 @@ public class Button : MonoBehaviour
                                     gManager.ameButtonCount++;
                                 else 
                                     gManager.rusButtonCount++;
-									
-                            }
                         }
                     }
                 }
+            }
         }
+    }
+
+    public void Reset(string side)
+    {
+        if (side == "America" && !isRussia)
+        {
+            spRend.sprite = buttonUnpressed;
+            gManager.ameButtonCount--;
+        }
+        else if (side == "Russia" && isRussia)
+        {
+            spRend.sprite = buttonUnpressed;
+            gManager.rusButtonCount--;
+        } 
     }
 }
