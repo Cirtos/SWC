@@ -86,6 +86,9 @@
     <Compile Include="Assets\Scripts\Buttons specific\HandMovement.cs" />
     <Compile Include="Assets\Scripts\ExitButton.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
+    <Compile Include="Assets\Scripts\Falklands\BoatsAndHoes.cs" />
+    <Compile Include="Assets\Scripts\Falklands\FalkHandMovement.cs" />
+    <Compile Include="Assets\Scripts\Falklands\Voter.cs" />
     <Compile Include="Assets\Scripts\Menu_Change.cs" />
     <Compile Include="Assets\Scripts\Menu_Confirm_Transition.cs" />
     <Compile Include="Assets\Scripts\Russia Hands\Russia_Hand_Attack.cs" />
