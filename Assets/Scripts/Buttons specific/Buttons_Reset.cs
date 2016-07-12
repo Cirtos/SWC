@@ -11,6 +11,7 @@ public class Buttons_Reset : MonoBehaviour {
     private string colTag;
     private float buttonDown;
 
+
 	// Use this for initialization
 	void Start () {
 	    

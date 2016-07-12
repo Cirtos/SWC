@@ -12,18 +12,14 @@ public class Voter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(transform.parent == null)
-        {
             if(onLand)
             {
                 //game manager vote count ++
             }
             else
             {
-                //swim back to boat
-                //when collide with boat, destroy and add to boat voter count
+                //is in water
             }
-        }
 	}
 
     void OnTriggerEnter2D(Collider2D col)

@@ -11,12 +11,12 @@ public class BoatsAndHoes : MonoBehaviour {
     public bool isGB;
     public GameObject voterPrefab;
     public GameObject teamHand;
+    public bool handOver;
 
     private float moveX;
     private float moveY;
     private Rigidbody2D rb;
     private Animator anim;
-    private bool handOver;
     private bool holding;
     private GameObject voter;
 
@@ -29,21 +29,7 @@ public class BoatsAndHoes : MonoBehaviour {
 
     void Update()
     {
-        if(handOver)
-        {
-            if(!holding && Input.GetButtonDown(fireButton))
-            {
-                holding = true;
-                voter = Instantiate(voterPrefab);
-                voter.transform.parent = teamHand.transform;
-            }
-            
-        }
-        if (holding && Input.GetButtonUp(fireButton))
-        {
-            holding = false;
-            voter.transform.parent = null;
-        }
+        
     }
 
     void FixedUpdate()
@@ -61,12 +47,22 @@ public class BoatsAndHoes : MonoBehaviour {
             {
                 handOver = true;
             }
+            else if (col.gameObject.tag == "GBRVoter")
+            {
+                Destroy(col);
+                voterCount++;
+            }
         }
         else
         {
             if(col.gameObject.tag == "America")
             {
                 handOver = true;
+            }
+            else if (col.gameObject.tag == "ARGVoter")
+            {
+                Destroy(col);
+                voterCount++;
             }
         }
     }

@@ -5,14 +5,21 @@ public class FalkHandMovement : MonoBehaviour {
 
     public string xAxesName;
     public string yAxesName;
+    public string fireButton;
     public float moveSpeed;
-    //public string axesName;
+    public BoatsAndHoes teamBoat;
+    public GameObject voterPrefab;
+    public GameObject enemyVoterPrefab;
+    public bool isGB;
     
-
     private float moveX;
     private float moveY;
     private Rigidbody2D rb;
     //private Animator anim;
+    private string voterAle;
+    private bool holding;
+    private GameObject voterOver;
+    private bool holdingEnemyVoter;
 
     // Use this for initialization
     void Start()
@@ -30,23 +37,97 @@ public class FalkHandMovement : MonoBehaviour {
 
     void Update()
     {
-       /* if (attackHand)
+        if (teamBoat.handOver)
         {
-            if (isRussia)
+            if (!holding && Input.GetButtonDown(fireButton) && teamBoat.voterCount > 0)
             {
-                if (Input.GetButtonDown(axesName))
+                holding = true;
+                teamBoat.voterCount--;
+                //voter.transform.parent = teamHand.transform;
+            }
+
+        }
+
+        if (holding && Input.GetButtonUp(fireButton))
+        {
+            GameObject voteToSpawn = holdingEnemyVoter ? enemyVoterPrefab : voterPrefab;
+            GameObject spawnedVoter = Instantiate(voteToSpawn);
+            spawnedVoter.transform.position = transform.position;
+            holding = false;
+            holdingEnemyVoter = false;
+        }
+
+
+        if (voterAle != "")
+        {
+            if (isGB)
+            {
+                if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
                 {
-                    anim.SetTrigger("RusPressed");
+                    Destroy(voterOver);
+                    holding = true;
+                }
+                else if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
+                {
+                    Destroy(voterOver);
+                    holding = true;
+                    holdingEnemyVoter = true;
                 }
             }
-            else if (!isRussia)
+            else
             {
-                if (Input.GetButtonDown(axesName))
+                if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
                 {
-                    anim.SetTrigger("MurPressed");
+                    Destroy(voterOver);
+                    holding = true;
+                }
+                else if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
+                {
+                    Destroy(voterOver);
+                    holding = true;
+                    holdingEnemyVoter = true;
                 }
             }
         }
-        */
+
+            /* if (attackHand)
+             {
+                 if (isRussia)
+                 {
+                     if (Input.GetButtonDown(axesName))
+                     {
+                         anim.SetTrigger("RusPressed");
+                     }
+                 }
+                 else if (!isRussia)
+                 {
+                     if (Input.GetButtonDown(axesName))
+                     {
+                         anim.SetTrigger("MurPressed");
+                     }
+                 }
+             }
+             */
+        }
+    
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "GBRVoter")
+        {
+            voterAle = "GBR";
+            voterOver = col.gameObject;
+        }
+
+        if (col.gameObject.tag == "ARGvoter")
+        {
+            voterAle = "ARG";
+            voterOver = col.gameObject;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        voterAle = "";
+        voterOver = null;
     }
 }
