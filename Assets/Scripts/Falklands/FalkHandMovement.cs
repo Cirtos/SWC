@@ -62,13 +62,10 @@ public class FalkHandMovement : MonoBehaviour {
         {
             if (isGB)
             {
-                if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
+                if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
                 {
-                    Destroy(voterOver);
-                    holding = true;
-                }
-                else if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
-                {
+                    voterOver.GetComponent<Voter>().Removal();
+                    print("GBR pickup enemy");
                     Destroy(voterOver);
                     holding = true;
                     holdingEnemyVoter = true;
@@ -76,13 +73,10 @@ public class FalkHandMovement : MonoBehaviour {
             }
             else
             {
-                if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
+                if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
                 {
-                    Destroy(voterOver);
-                    holding = true;
-                }
-                else if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
-                {
+                    voterOver.GetComponent<Voter>().Removal();
+                    print("ARG pickup enemy");
                     Destroy(voterOver);
                     holding = true;
                     holdingEnemyVoter = true;
@@ -112,7 +106,7 @@ public class FalkHandMovement : MonoBehaviour {
     
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "GBRVoter")
+        if (col.gameObject.tag == "GBRvoter")
         {
             voterAle = "GBR";
             voterOver = col.gameObject;

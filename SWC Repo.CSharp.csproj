@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\ExitButton.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\Falklands\BoatsAndHoes.cs" />
+    <Compile Include="Assets\Scripts\Falklands\FalkGameManager.cs" />
     <Compile Include="Assets\Scripts\Falklands\FalkHandMovement.cs" />
     <Compile Include="Assets\Scripts\Falklands\Voter.cs" />
     <Compile Include="Assets\Scripts\Menu_Change.cs" />

@@ -47,9 +47,9 @@ public class BoatsAndHoes : MonoBehaviour {
             {
                 handOver = true;
             }
-            else if (col.gameObject.tag == "GBRVoter")
+            else if (col.gameObject.tag == "GBRvoter")
             {
-                Destroy(col);
+                Destroy(col.gameObject);
                 voterCount++;
             }
         }
@@ -59,9 +59,9 @@ public class BoatsAndHoes : MonoBehaviour {
             {
                 handOver = true;
             }
-            else if (col.gameObject.tag == "ARGVoter")
+            else if (col.gameObject.tag == "ARGvoter")
             {
-                Destroy(col);
+                Destroy(col.gameObject);
                 voterCount++;
             }
         }
