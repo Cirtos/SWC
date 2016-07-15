@@ -84,6 +84,9 @@
     <Compile Include="Assets\Scripts\Buttons specific\Face_Manager_Russia.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\GameManager.cs" />
     <Compile Include="Assets\Scripts\Buttons specific\HandMovement.cs" />
+    <Compile Include="Assets\Scripts\Emu\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Emu\EmuHandMovement.cs" />
+    <Compile Include="Assets\Scripts\Emu\EmuProjectile.cs" />
     <Compile Include="Assets\Scripts\ExitButton.cs" />
     <Compile Include="Assets\Scripts\FadeIn.cs" />
     <Compile Include="Assets\Scripts\Falklands\BoatsAndHoes.cs" />

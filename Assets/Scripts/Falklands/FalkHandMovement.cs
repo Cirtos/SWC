@@ -20,10 +20,12 @@ public class FalkHandMovement : MonoBehaviour {
     private bool holding;
     private GameObject voterOver;
     private bool holdingEnemyVoter;
+    private FalkGameManager gManager;
 
     // Use this for initialization
     void Start()
     {
+        gManager = FindObjectOfType<FalkGameManager>();
         rb = GetComponent<Rigidbody2D>();
        // anim = GetComponent<Animator>();
     }
@@ -37,13 +39,18 @@ public class FalkHandMovement : MonoBehaviour {
 
     void Update()
     {
+
+        if (gManager.gameOver || gManager.gameNotStarted)
+        {
+            return;
+        }
+
         if (teamBoat.handOver)
         {
             if (!holding && Input.GetButtonDown(fireButton) && teamBoat.voterCount > 0)
             {
                 holding = true;
                 teamBoat.voterCount--;
-                //voter.transform.parent = teamHand.transform;
             }
 
         }
@@ -65,7 +72,6 @@ public class FalkHandMovement : MonoBehaviour {
                 if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
                 {
                     voterOver.GetComponent<Voter>().Removal();
-                    print("GBR pickup enemy");
                     Destroy(voterOver);
                     holding = true;
                     holdingEnemyVoter = true;
@@ -76,7 +82,6 @@ public class FalkHandMovement : MonoBehaviour {
                 if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
                 {
                     voterOver.GetComponent<Voter>().Removal();
-                    print("ARG pickup enemy");
                     Destroy(voterOver);
                     holding = true;
                     holdingEnemyVoter = true;

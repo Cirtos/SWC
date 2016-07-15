@@ -16,9 +16,10 @@ public class FalkGameManager : MonoBehaviour {
     public Text countdown;
     public GameObject afterGameButtons;
     public GameObject startBoundaries;
-    public bool gameStart;
     public SecondTimer levelTimer;
     public Background_Music bg;
+    public bool gameOver;
+    public bool gameNotStarted;
 
     private float startTime;
 
@@ -31,12 +32,12 @@ public class FalkGameManager : MonoBehaviour {
         afterGameButtons.SetActive(false);
 
         startTime = Time.time;
-        gameStart = true;
+        gameNotStarted = true;
     }
 	
 	void Update () {
 
-        if (gameStart)
+        if (gameNotStarted)
         {
             float cdf = Mathf.Ceil((startTime + startDelay) - Time.time);
             int cd = (int)cdf;
@@ -92,18 +93,19 @@ public class FalkGameManager : MonoBehaviour {
             {
                 //draw
             }
-            
+
+            gameOver = true;
             bg.Victory();
             afterGameButtons.SetActive(true);
         }
 
         if(Time.time > (startTime + startDelay))
         {
-            if (gameStart)
+            if (gameNotStarted)
             {
                 startBoundaries.SetActive(false);
                 levelTimer.GameStart();
-                gameStart = false;
+                gameNotStarted = false;
             }
         }
     }
