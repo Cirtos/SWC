@@ -17,13 +17,14 @@ public class EmuHandMovement : MonoBehaviour {
     public Sprite p1Hand;
     public Sprite p2Hand;
 
-    private SwitchesGameManager gManager;
+    private EmuGameManager gManager;
     private float moveX;
     private float moveY;
     private int currentLane;
     private bool moving;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
+    private bool gameOverSwap;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +32,7 @@ public class EmuHandMovement : MonoBehaviour {
         currentLane = startLane;
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        gManager = FindObjectOfType<SwitchesGameManager>();
+        gManager = FindObjectOfType<EmuGameManager>();
 	}
 	
 	// Update is called once per frame
@@ -46,17 +47,17 @@ public class EmuHandMovement : MonoBehaviour {
 
         if (moveY > -0.5 && moveY < 0.5)
             moving = false;
-        if (moveY > 0.5 && !moving && currentLane != lanes.Length-1)
-        {
-            transform.position = lanes[currentLane + 1].transform.position;
-            moving = true;
-            currentLane++;
-        }
-        if (moveY < -0.5 && !moving && currentLane != 0)
+        if (moveY > 0.5 && !moving && currentLane != 0)
         {
             transform.position = lanes[currentLane - 1].transform.position;
             moving = true;
             currentLane--;
+        }
+        if (moveY < -0.5 && !moving && currentLane != lanes.Length - 1)
+        {
+            transform.position = lanes[currentLane + 1].transform.position;
+            moving = true;
+            currentLane++;
         }
         if(Input.GetButtonDown(fireButton))
         {
@@ -76,15 +77,24 @@ public class EmuHandMovement : MonoBehaviour {
     {
         if (gManager.gameOver)
         {
-            if (isEmu)
+            if (!gameOverSwap)
             {
-                Instantiate(emuPlayer, transform.position, Quaternion.identity);
-                sprite.sprite = p2Hand;
-            }
-            else
-            {
-                Instantiate(jeepPlayer, transform.position, Quaternion.identity);
-                sprite.sprite = p1Hand;
+                if (isEmu)
+                {
+                    Instantiate(emuPlayer, transform.position, Quaternion.identity);
+                    sprite.sprite = p2Hand;
+                    transform.localScale = new Vector3 (4, 4, 4);
+                    sprite.sortingOrder = 2;
+                    gameOverSwap = true;
+                }
+                else
+                {
+                    Instantiate(jeepPlayer, transform.position, Quaternion.identity);
+                    sprite.sprite = p1Hand;
+                    transform.localScale = new Vector3(4, 4, 4);
+                    sprite.sortingOrder = 2;
+                    gameOverSwap = true;
+                }
             }
             
             moveX = Input.GetAxis(xAxesName);

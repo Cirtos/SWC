@@ -5,21 +5,19 @@ public class Bullet : MonoBehaviour {
 
     public float moveSpeed;
 
+    private EmuGameManager gManager;
     private Rigidbody2D rb;
     private EmuProjectile hitEmu;
 
 	// Use this for initialization
 	void Start () {
+        gManager = FindObjectOfType<EmuGameManager>();
         rb = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        rb.velocity = transform.forward * moveSpeed;
-        if(hitEmu != null)
-        {
-            hitEmu.Damage();
-        }
+        rb.velocity = transform.right * moveSpeed;
 	}
 
     void OnTriggerEnter2D(Collider2D col)
@@ -27,12 +25,14 @@ public class Bullet : MonoBehaviour {
         if(col.gameObject.tag == "Emu")
         {
             GameObject emu = col.gameObject;
-            hitEmu = emu.GetComponent<EmuProjectile>();
+            Destroy(emu);
+            Destroy(gameObject);
         }
 
-        if(col.gameObject.tag == "EmuPlayer")
+        if(col.gameObject.name == "Emu Zone")
         {
-            //damage player
+            gManager.bulletsZoned++;
+            Destroy(gameObject);
         }
     }
 }
