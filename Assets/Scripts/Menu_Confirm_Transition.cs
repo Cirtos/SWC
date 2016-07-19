@@ -4,6 +4,8 @@ using System.Collections;
 public class Menu_Confirm_Transition : MonoBehaviour {
 
     public string sceneToTrans;
+    public string pTaggedAsRussiaButton;
+    public string pTaggedAsAmericaButton;
 
     private bool focus;
     private string colTag;
@@ -19,14 +21,14 @@ public class Menu_Confirm_Transition : MonoBehaviour {
         {
             if(colTag == "Russia")
             {
-                if (Input.GetButtonDown("P2 Fire"))
+                if (Input.GetButtonDown(pTaggedAsRussiaButton))
                 {
                     Application.LoadLevel(sceneToTrans);
                 }
             }
             else if (colTag == "America")
             {
-                if (Input.GetButtonDown("P1 Fire"))
+                if (Input.GetButtonDown(pTaggedAsAmericaButton))
                 {
                     Application.LoadLevel(sceneToTrans);
                 }

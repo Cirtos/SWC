@@ -20,6 +20,9 @@ public class FalkGameManager : MonoBehaviour {
     public Background_Music bg;
     public bool gameOver;
     public bool gameNotStarted;
+    public bool argWin;
+    public bool gbrWin;
+    public bool draw;
 
     private float startTime;
 
@@ -83,15 +86,18 @@ public class FalkGameManager : MonoBehaviour {
             {
                 rusAnthem.SetActive(true);
                 ruskieswin.SetActive(true);
+                gbrWin = true;
             }
             else if (argVoterCount > gbrVoterCount)
             {
                 ameAnthem.SetActive(true);
                 muricawin.SetActive(true);
+                argWin = true;
             }
             else
             {
                 //draw
+                draw = true;
             }
 
             gameOver = true;

@@ -7,6 +7,7 @@ public class Voter : MonoBehaviour
     private bool onLand;
     private bool placedOnLand;
     private FalkGameManager gManager;
+    private bool flagDelete;
 
     // Use this for initialization
     void Start()
@@ -17,6 +18,8 @@ public class Voter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (flagDelete)
+            Destroy(gameObject);
         if (placedOnLand)
         {
             if (tag == "GBRvoter")
@@ -60,8 +63,10 @@ public class Voter : MonoBehaviour
             }
             else
             {
-                gManager.argVoterCount--;
+                gManager.argVoterCount--;                
             }
         }
+
+        flagDelete = true;
     }
 }

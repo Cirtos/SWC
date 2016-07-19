@@ -15,7 +15,7 @@ public class FalkHandMovement : MonoBehaviour {
     private float moveX;
     private float moveY;
     private Rigidbody2D rb;
-    //private Animator anim;
+    private Animator anim;
     private string voterAle;
     private bool holding;
     private GameObject voterOver;
@@ -27,7 +27,7 @@ public class FalkHandMovement : MonoBehaviour {
     {
         gManager = FindObjectOfType<FalkGameManager>();
         rb = GetComponent<Rigidbody2D>();
-       // anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -72,7 +72,6 @@ public class FalkHandMovement : MonoBehaviour {
                 if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
                 {
                     voterOver.GetComponent<Voter>().Removal();
-                    Destroy(voterOver);
                     holding = true;
                     holdingEnemyVoter = true;
                 }
@@ -82,31 +81,34 @@ public class FalkHandMovement : MonoBehaviour {
                 if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
                 {
                     voterOver.GetComponent<Voter>().Removal();
-                    Destroy(voterOver);
                     holding = true;
                     holdingEnemyVoter = true;
                 }
             }
         }
 
-            /* if (attackHand)
+        /* if (attackHand)
+         {
+             if (isRussia)
              {
-                 if (isRussia)
+                 if (Input.GetButtonDown(axesName))
                  {
-                     if (Input.GetButtonDown(axesName))
-                     {
-                         anim.SetTrigger("RusPressed");
-                     }
-                 }
-                 else if (!isRussia)
-                 {
-                     if (Input.GetButtonDown(axesName))
-                     {
-                         anim.SetTrigger("MurPressed");
-                     }
+                     anim.SetTrigger("RusPressed");
                  }
              }
-             */
+             else if (!isRussia)
+             {
+                 if (Input.GetButtonDown(axesName))
+                 {
+                     anim.SetTrigger("MurPressed");
+                 }
+             }
+         }
+         */
+
+        if (holding)
+            anim.SetBool("holding", true);
+
         }
     
     void OnTriggerEnter2D(Collider2D col)
