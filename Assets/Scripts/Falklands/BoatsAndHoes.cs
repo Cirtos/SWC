@@ -49,8 +49,12 @@ public class BoatsAndHoes : MonoBehaviour {
             }
             else if (col.gameObject.tag == "GBRvoter")
             {
-                Destroy(col.gameObject);
-                voterCount++;
+                Voter vote = col.GetComponent<Voter>();
+                if (!vote.onLand)
+                {
+                    voterCount++;
+                    Destroy(col.gameObject);
+                }
             }
         }
         else
@@ -61,8 +65,12 @@ public class BoatsAndHoes : MonoBehaviour {
             }
             else if (col.gameObject.tag == "ARGvoter")
             {
-                Destroy(col.gameObject);
-                voterCount++;
+                Voter vote = col.GetComponent<Voter>();
+                if (!vote.onLand)
+                {
+                    voterCount++;
+                    Destroy(col.gameObject);
+                }
             }
         }
     }

@@ -4,15 +4,17 @@ using System.Collections;
 public class Voter : MonoBehaviour
 {
 
-    private bool onLand;
+    public bool onLand;
     private bool placedOnLand;
     private FalkGameManager gManager;
     private bool flagDelete;
+    private Animator anim;
 
     // Use this for initialization
     void Start()
     {
         gManager = FindObjectOfType<FalkGameManager>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,7 +32,7 @@ public class Voter : MonoBehaviour
             {
                 gManager.argVoterCount++;
             }
-
+            anim.SetBool("onLand", true);
             placedOnLand = false;
         }
     }

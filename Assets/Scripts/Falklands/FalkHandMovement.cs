@@ -11,6 +11,9 @@ public class FalkHandMovement : MonoBehaviour {
     public GameObject voterPrefab;
     public GameObject enemyVoterPrefab;
     public bool isGB;
+    public GameObject voterHold;
+    public GameObject enemyVoterHold;
+    public Transform finger;
     
     private float moveX;
     private float moveY;
@@ -25,6 +28,8 @@ public class FalkHandMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        voterHold.SetActive(false);
+        enemyVoterHold.SetActive(false);
         gManager = FindObjectOfType<FalkGameManager>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -59,9 +64,12 @@ public class FalkHandMovement : MonoBehaviour {
         {
             GameObject voteToSpawn = holdingEnemyVoter ? enemyVoterPrefab : voterPrefab;
             GameObject spawnedVoter = Instantiate(voteToSpawn);
-            spawnedVoter.transform.position = transform.position;
+            spawnedVoter.transform.position = finger.transform.position;
             holding = false;
             holdingEnemyVoter = false;
+            voterHold.SetActive(false);
+            enemyVoterHold.SetActive(false);
+            anim.SetBool("holding", false);
         }
 
 
@@ -87,6 +95,16 @@ public class FalkHandMovement : MonoBehaviour {
             }
         }
 
+        if (holding)
+        {
+            if (holdingEnemyVoter)
+                enemyVoterHold.SetActive(true);
+            else
+                voterHold.SetActive(true);
+
+            anim.SetBool("holding", true);
+        }
+
         /* if (attackHand)
          {
              if (isRussia)
@@ -105,9 +123,6 @@ public class FalkHandMovement : MonoBehaviour {
              }
          }
          */
-
-        if (holding)
-            anim.SetBool("holding", true);
 
         }
     
