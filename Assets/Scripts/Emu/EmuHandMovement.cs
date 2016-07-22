@@ -9,6 +9,7 @@ public class EmuHandMovement : MonoBehaviour {
     public float moveSpeed;
     public string fireButton;
     public int startLane;
+    public float shotDelay;
     public bool isEmu;
     public GameObject emu;
     public GameObject bullet;
@@ -16,6 +17,8 @@ public class EmuHandMovement : MonoBehaviour {
     public GameObject jeepPlayer;
     public Sprite p1Hand;
     public Sprite p2Hand;
+    public Transform projectileSpawner;
+    public Animator anim;
 
     private EmuGameManager gManager;
     private float moveX;
@@ -25,6 +28,7 @@ public class EmuHandMovement : MonoBehaviour {
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     private bool gameOverSwap;
+    private float lastShot;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +37,7 @@ public class EmuHandMovement : MonoBehaviour {
         sprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         gManager = FindObjectOfType<EmuGameManager>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -61,14 +66,19 @@ public class EmuHandMovement : MonoBehaviour {
         }
         if(Input.GetButtonDown(fireButton))
         {
-            //lanes[currentLane].Pressed();
-            if(isEmu)
+            if (Time.time > lastShot + shotDelay)
             {
-                Instantiate(emu, transform.position, Quaternion.identity);
-            }
-            else
-            {
-                Instantiate(bullet, transform.position, Quaternion.identity);
+                if (isEmu)
+                {
+                    Instantiate(emu, projectileSpawner.transform.position, Quaternion.identity);
+                    lastShot = Time.time;
+                }
+                else
+                {
+                    Instantiate(bullet, projectileSpawner.transform.position, Quaternion.identity);
+                    anim.SetTrigger("Shoot");
+                    lastShot = Time.time;
+                }
             }
         }
     }
@@ -81,19 +91,19 @@ public class EmuHandMovement : MonoBehaviour {
             {
                 if (isEmu)
                 {
+                    gameOverSwap = true;
                     Instantiate(emuPlayer, transform.position, Quaternion.identity);
                     sprite.sprite = p2Hand;
                     transform.localScale = new Vector3 (4, 4, 4);
                     sprite.sortingOrder = 2;
-                    gameOverSwap = true;
                 }
                 else
                 {
+                    gameOverSwap = true;
                     Instantiate(jeepPlayer, transform.position, Quaternion.identity);
                     sprite.sprite = p1Hand;
                     transform.localScale = new Vector3(4, 4, 4);
                     sprite.sortingOrder = 2;
-                    gameOverSwap = true;
                 }
             }
             

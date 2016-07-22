@@ -16,7 +16,6 @@ public class BoatsAndHoes : MonoBehaviour {
     private float moveX;
     private float moveY;
     private Rigidbody2D rb;
-    private Animator anim;
     private bool holding;
     private GameObject voter;
 
@@ -24,7 +23,6 @@ public class BoatsAndHoes : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
     }
 
     void Update()

@@ -24,14 +24,15 @@ public class Bullet : MonoBehaviour {
     {
         if(col.gameObject.tag == "Emu")
         {
-            GameObject emu = col.gameObject;
-            Destroy(emu);
+            EmuProjectile emu = col.GetComponent<EmuProjectile>();
+            emu.Die();
+            Destroy(col);
+            gManager.bulletsZoned++;
             Destroy(gameObject);
         }
 
         if(col.gameObject.name == "Emu Zone")
         {
-            gManager.bulletsZoned++;
             Destroy(gameObject);
         }
     }
