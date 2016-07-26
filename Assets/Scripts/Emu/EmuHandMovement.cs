@@ -52,14 +52,28 @@ public class EmuHandMovement : MonoBehaviour {
 
         if (moveY > -0.5 && moveY < 0.5)
             moving = false;
-        if (moveY > 0.5 && !moving && currentLane != 0)
+        if (moveY > 0.5 && !moving)
         {
+            if(currentLane == 0)
+            {
+                transform.position = lanes[lanes.Length - 1].transform.position;
+                moving = true;
+                currentLane = lanes.Length - 1;
+                return;
+            }
             transform.position = lanes[currentLane - 1].transform.position;
             moving = true;
             currentLane--;
         }
-        if (moveY < -0.5 && !moving && currentLane != lanes.Length - 1)
+        if (moveY < -0.5 && !moving)
         {
+            if(currentLane == lanes.Length - 1)
+            {
+                transform.position = lanes[0].transform.position;
+                moving = true;
+                currentLane = 0;
+                return;
+            }
             transform.position = lanes[currentLane + 1].transform.position;
             moving = true;
             currentLane++;

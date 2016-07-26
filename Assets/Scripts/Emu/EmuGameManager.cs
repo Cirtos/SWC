@@ -8,8 +8,8 @@ public class EmuGameManager : MonoBehaviour
     public float startDelay;
     public GameObject ausAnthem;
     public GameObject emuAnthem;
-    public GameObject ausWin;
-    public GameObject emuWin;
+    public GameObject ausWinPaper;
+    public GameObject emuWinPaper;
     public int emusZoned;
     public int bulletsZoned;
     public Text emuNumber;
@@ -20,6 +20,9 @@ public class EmuGameManager : MonoBehaviour
     public Background_Music bg;
     public bool gameOver;
     public bool gameNotStarted;
+    public bool emuWin;
+    public bool ausWin;
+    public bool draw;
 
     private float startTime;
 
@@ -27,8 +30,8 @@ public class EmuGameManager : MonoBehaviour
     {
         ausAnthem.SetActive(false);
         emuAnthem.SetActive(false);
-        ausWin.SetActive(false);
-        emuWin.SetActive(false);
+        ausWinPaper.SetActive(false);
+        emuWinPaper.SetActive(false);
         afterGameButtons.SetActive(false);
 
         startTime = Time.time;
@@ -62,16 +65,19 @@ public class EmuGameManager : MonoBehaviour
             if (emusZoned > bulletsZoned)
             {
                 emuAnthem.SetActive(true);
-                emuWin.SetActive(true);
+                emuWinPaper.SetActive(true);
+                emuWin = true;
             }
             else if (bulletsZoned > emusZoned)
             {
                 ausAnthem.SetActive(true);
-                ausWin.SetActive(true);
+                ausWinPaper.SetActive(true);
+                ausWin = true;
             }
             else
             {
                 //draw
+                draw = true;
             }
 
             gameOver = true;

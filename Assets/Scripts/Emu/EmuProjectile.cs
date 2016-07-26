@@ -19,6 +19,10 @@ public class EmuProjectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(gManager.gameOver)
+        {
+            Destroy(gameObject);
+        }
             rb.velocity = -transform.right * moveSpeed;
     }
 
