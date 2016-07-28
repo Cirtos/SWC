@@ -18,5 +18,6 @@ public class Switches_Face_Manager_Murica : MonoBehaviour {
         anim.SetInteger("face", gmanager.ameSwitches);
         anim.SetBool("nuke", gmanager.ameNuke);
         anim.SetBool("win", gmanager.rusNuke);
+        anim.SetBool("draw", gmanager.draw);
     }
 }

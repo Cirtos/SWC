@@ -18,5 +18,6 @@ public class Switches_Face_Manager_Russia : MonoBehaviour
         anim.SetInteger("face", gmanager.rusSwitches);
         anim.SetBool("nuke", gmanager.rusNuke);
         anim.SetBool("win", gmanager.ameNuke);
+        anim.SetBool("draw", gmanager.draw);
     }
 }

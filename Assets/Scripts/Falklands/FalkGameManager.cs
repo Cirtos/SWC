@@ -7,10 +7,12 @@ public class FalkGameManager : MonoBehaviour {
     public float startDelay;
     public GameObject ameAnthem;
     public GameObject rusAnthem;
+    public GameObject drawAnthem;
     public int gbrVoterCount;
     public int argVoterCount;
     public GameObject muricawin;
     public GameObject ruskieswin;
+    public GameObject drawPaper;
     public Text rusNumber;
     public Text murNumber;
     public Text countdown;
@@ -30,6 +32,8 @@ public class FalkGameManager : MonoBehaviour {
     {
         ameAnthem.SetActive(false);
         rusAnthem.SetActive(false);
+        drawPaper.SetActive(false);
+        //drawAnthem.SetActive(false);
         ruskieswin.SetActive(false);
         muricawin.SetActive(false);
         afterGameButtons.SetActive(false);
@@ -96,8 +100,9 @@ public class FalkGameManager : MonoBehaviour {
             }
             else
             {
-                //draw
                 draw = true;
+                drawPaper.SetActive(true);
+                //drawAnthem.SetActive(true);
             }
 
             gameOver = true;

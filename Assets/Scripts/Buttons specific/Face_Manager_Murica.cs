@@ -17,6 +17,7 @@ public class Face_Manager_Murica : MonoBehaviour {
     void Update()
     {
         anim.SetInteger("face", gmanager.rusButtonCount);
+        anim.SetBool("draw", gmanager.draw);
     }
 
 

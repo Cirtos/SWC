@@ -7,11 +7,13 @@ public class GameManager : MonoBehaviour {
     public float startDelay;
     public GameObject ameAnthem;
     public GameObject rusAnthem;
+    public GameObject drawAnthem;
     public int rusButtonCount;
     public int ameButtonCount;
     public bool gameoveryeh;
     public GameObject muricawin;
     public GameObject ruskieswin;
+    public GameObject drawPaper;
     public Text rusNumber;
     public Text murNumber;
     public Text countdown;
@@ -20,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public bool gameStart;
     public SecondTimer levelTimer;
     public Background_Music bg;
+    public bool draw;
 
     private float startTime;
 
@@ -29,6 +32,8 @@ public class GameManager : MonoBehaviour {
         rusAnthem.SetActive(false);
         ruskieswin.SetActive(false);
         muricawin.SetActive(false);
+        drawPaper.SetActive(false);
+        //drawAnthem.SetActive(false);
         afterGameButtons.SetActive(false);
 
         startTime = Time.time;
@@ -75,6 +80,15 @@ public class GameManager : MonoBehaviour {
             levelTimer.StopTimer();
             bg.Victory();
         }
+        else if(levelTimer.roundTime <= 0)
+        {
+            draw = true;
+            drawPaper.SetActive(true);
+            //drawAnthem.SetActive(true);
+            gameoveryeh = true;
+            levelTimer.StopTimer();
+            bg.Victory();
+        }
 
         if(gameoveryeh)
         {
@@ -90,16 +104,5 @@ public class GameManager : MonoBehaviour {
                 gameStart = false;
             }
         }
-    }
-
-    void Reset()
-    {
-        ameButtonCount = 0;
-        rusButtonCount = 0;
-        ameAnthem.SetActive(false);
-        rusAnthem.SetActive(false);
-        gameoveryeh = false;
-        ruskieswin.SetActive(false);
-        muricawin.SetActive(false);
     }
 }

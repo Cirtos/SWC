@@ -12,17 +12,20 @@ public class SwitchesGameManager : MonoBehaviour {
     public GameObject gameEndButtons;
     public GameObject ameAnthem;
     public GameObject rusAnthem;
+    public GameObject drawAnthem;
     public Text rusNumber;
     public Text murNumber;
     public Text countdown;
     public GameObject muricawin;
     public GameObject ruskieswin;
+    public GameObject drawPaper;
     public Background_Music bg;
     public SecondTimer levelTimer;
     public bool gameNotStarted;
     public bool gameOver;
     public bool rusNuke;
     public bool ameNuke;
+    public bool draw;
 
     private float startTime;
 
@@ -33,6 +36,8 @@ public class SwitchesGameManager : MonoBehaviour {
         rusAnthem.SetActive(false);
         ruskieswin.SetActive(false);
         muricawin.SetActive(false);
+        drawPaper.SetActive(false);
+        //drawAnthem.SetActive(false);
         gameEndButtons.SetActive(false);
 
         startTime = Time.time;
@@ -70,6 +75,16 @@ public class SwitchesGameManager : MonoBehaviour {
             }
         }
 
+        if (levelTimer.roundTime <= 0)
+        {
+            drawPaper.SetActive(true);
+            //drawAnthem.SetActive(true);
+            draw = true;
+            gameOver = true;
+            levelTimer.StopTimer();
+            gameEndButtons.SetActive(true);
+            bg.Victory();
+        }
     }
 
     public void NukePressed(string nukePressed)
@@ -79,7 +94,6 @@ public class SwitchesGameManager : MonoBehaviour {
             rusAnthem.SetActive(true);
             ruskieswin.SetActive(true);
             ameNuke = true;
-            
         }
         else
         {

@@ -10,6 +10,8 @@ public class EmuGameManager : MonoBehaviour
     public GameObject emuAnthem;
     public GameObject ausWinPaper;
     public GameObject emuWinPaper;
+    public GameObject drawPaper;
+    public GameObject drawAnthem;
     public int emusZoned;
     public int bulletsZoned;
     public Text emuNumber;
@@ -32,6 +34,8 @@ public class EmuGameManager : MonoBehaviour
         emuAnthem.SetActive(false);
         ausWinPaper.SetActive(false);
         emuWinPaper.SetActive(false);
+        drawPaper.SetActive(false);
+        //drawAnthem.SetActive(false);
         afterGameButtons.SetActive(false);
 
         startTime = Time.time;
@@ -76,10 +80,12 @@ public class EmuGameManager : MonoBehaviour
             }
             else
             {
-                //draw
                 draw = true;
+                drawPaper.SetActive(true);
+                //drawAnthem.SetActive(true);
             }
 
+            levelTimer.StopTimer();
             gameOver = true;
             bg.Victory();
             afterGameButtons.SetActive(true);

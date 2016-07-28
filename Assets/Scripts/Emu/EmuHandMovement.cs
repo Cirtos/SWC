@@ -106,16 +106,18 @@ public class EmuHandMovement : MonoBehaviour {
                 if (isEmu)
                 {
                     gameOverSwap = true;
-                    Instantiate(emuPlayer, transform.position, Quaternion.identity);
+                    //Instantiate(emuPlayer, transform.position, Quaternion.identity);
                     sprite.sprite = p2Hand;
+                    Destroy(anim);
                     transform.localScale = new Vector3 (4, 4, 4);
                     sprite.sortingOrder = 2;
                 }
                 else
                 {
                     gameOverSwap = true;
-                    Instantiate(jeepPlayer, transform.position, Quaternion.identity);
+                    //Instantiate(jeepPlayer, transform.position, Quaternion.identity);
                     sprite.sprite = p1Hand;
+                    Destroy(anim);
                     transform.localScale = new Vector3(4, 4, 4);
                     sprite.sortingOrder = 2;
                 }

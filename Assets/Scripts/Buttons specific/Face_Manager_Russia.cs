@@ -17,7 +17,6 @@ public class Face_Manager_Russia : MonoBehaviour
     void Update()
     {
         anim.SetInteger("face", gmanager.ameButtonCount);
-    }
-
-    
+        anim.SetBool("draw", gmanager.draw);
+    }    
 }

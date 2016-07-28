@@ -10,45 +10,48 @@ public class Buttons_Reset : MonoBehaviour {
     private bool focus;
     private string colTag;
     private float buttonDown;
+    private GameManager gManager;
 
 
 	// Use this for initialization
 	void Start () {
-	    
+        gManager = FindObjectOfType<GameManager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if (focus == true)
+        if (!gManager.gameoveryeh)
         {
-            if (colTag == "Russia" && isRussia)
+            if (focus == true)
             {
-                if (Input.GetButtonDown("P2 Fire"))
-                    buttonDown = Time.time;
-                if (Input.GetButton("P2 Fire"))
+                if (colTag == "Russia" && isRussia)
                 {
-                    if (Time.time > (buttonDown + resetTime))
+                    if (Input.GetButtonDown("P2 Fire"))
+                        buttonDown = Time.time;
+                    if (Input.GetButton("P2 Fire"))
                     {
-                        foreach(Button button in buttons)
+                        if (Time.time > (buttonDown + resetTime))
                         {
-                            button.Reset("Russia");
+                            foreach (Button button in buttons)
+                            {
+                                button.Reset("Russia");
+                            }
                         }
                     }
                 }
-            }
-            else if (colTag == "America" && !isRussia)
-            {
-                if (Input.GetButtonDown("P1 Fire"))
-                    buttonDown = Time.time;
-                if (Input.GetButton("P1 Fire"))
+                else if (colTag == "America" && !isRussia)
                 {
-                    buttonDown = Time.time;
-                    if (Time.time > (buttonDown + resetTime))
+                    if (Input.GetButtonDown("P1 Fire"))
+                        buttonDown = Time.time;
+                    if (Input.GetButton("P1 Fire"))
                     {
-                        foreach (Button button in buttons)
+                        if (Time.time > (buttonDown + resetTime))
                         {
-                            button.Reset("America");
+                            foreach (Button button in buttons)
+                            {
+                                button.Reset("America");
+                            }
                         }
                     }
                 }
@@ -60,6 +63,7 @@ public class Buttons_Reset : MonoBehaviour {
     {
         focus = true;
         colTag = col.gameObject.tag;
+        print(col.name);
     }
 
     void OnTriggerExit2D(Collider2D col)
