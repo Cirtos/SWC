@@ -98,6 +98,8 @@
     <Compile Include="Assets\Scripts\Falklands\Voter.cs" />
     <Compile Include="Assets\Scripts\Menu_Change.cs" />
     <Compile Include="Assets\Scripts\Menu_Confirm_Transition.cs" />
+    <Compile Include="Assets\Scripts\Mode_Confirm.cs" />
+    <Compile Include="Assets\Scripts\Mode_Select.cs" />
     <Compile Include="Assets\Scripts\Russia Hands\Russia_Hand_Attack.cs" />
     <Compile Include="Assets\Scripts\Russia Hands\Russia_Hand_Defend.cs" />
     <Compile Include="Assets\Scripts\SecondTimer.cs" />
