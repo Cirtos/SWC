@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
     public bool draw;
 
     private float startTime;
+    private All_Screens_Manager pause;
 
     void Awake()
     {
@@ -36,11 +37,15 @@ public class GameManager : MonoBehaviour {
         //drawAnthem.SetActive(false);
         afterGameButtons.SetActive(false);
 
+        pause = FindObjectOfType<All_Screens_Manager>();
         startTime = Time.time;
         gameStart = true;
     }
 	
 	void Update () {
+
+        if (pause.paused)
+            return;
 
         if (gameStart)
         {
@@ -56,6 +61,7 @@ public class GameManager : MonoBehaviour {
         if (((startTime + startDelay) - Time.time) < -1)
         {
             countdown.text = "";
+            pause.startGame = false;
         }
 
         //Set the number to how many of own buttons pressed by enemy

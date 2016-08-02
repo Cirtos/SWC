@@ -12,14 +12,19 @@ public class SecondTimer : MonoBehaviour {
     private float seconds;
     private float fraction;
     private bool rolling;
+    private All_Screens_Manager pause;
 
     // Use this for initialization
     void Start () {
         uiText = GetComponent<Text>();
-	}
+        pause = FindObjectOfType<All_Screens_Manager>();
+    }
 
     void Update()
     {
+
+        if (pause.paused)
+            return;
         if (rolling)
             roundTime -= Time.deltaTime;
         minutes = 0;

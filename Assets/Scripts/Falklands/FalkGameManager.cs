@@ -27,6 +27,7 @@ public class FalkGameManager : MonoBehaviour {
     public bool draw;
 
     private float startTime;
+    private All_Screens_Manager pause;
 
     void Awake()
     {
@@ -38,11 +39,16 @@ public class FalkGameManager : MonoBehaviour {
         muricawin.SetActive(false);
         afterGameButtons.SetActive(false);
 
+        pause = FindObjectOfType<All_Screens_Manager>();
+
         startTime = Time.time;
         gameNotStarted = true;
     }
 	
 	void Update () {
+
+        if (pause.paused)
+            return;
 
         if (gameNotStarted)
         {
@@ -52,6 +58,7 @@ public class FalkGameManager : MonoBehaviour {
             if (cd == 0)
             {
                 countdown.text = "Go!";
+                pause.startGame = false;
             }
         }
 

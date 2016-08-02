@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\All_Screens_Manager.cs" />
     <Compile Include="Assets\Scripts\America Hands\America_Hand_Attack.cs" />
     <Compile Include="Assets\Scripts\America Hands\America_Hand_Defend.cs" />
     <Compile Include="Assets\Scripts\Background_Music.cs" />
@@ -99,7 +100,11 @@
     <Compile Include="Assets\Scripts\Menu_Change.cs" />
     <Compile Include="Assets\Scripts\Menu_Confirm_Transition.cs" />
     <Compile Include="Assets\Scripts\Mode_Confirm.cs" />
+    <Compile Include="Assets\Scripts\Mode_Confirm_Cover.cs" />
+    <Compile Include="Assets\Scripts\Mode_Screen_Manager.cs" />
     <Compile Include="Assets\Scripts\Mode_Select.cs" />
+    <Compile Include="Assets\Scripts\Papers.cs" />
+    <Compile Include="Assets\Scripts\Pause_Hands.cs" />
     <Compile Include="Assets\Scripts\Russia Hands\Russia_Hand_Attack.cs" />
     <Compile Include="Assets\Scripts\Russia Hands\Russia_Hand_Defend.cs" />
     <Compile Include="Assets\Scripts\SecondTimer.cs" />

@@ -10,6 +10,7 @@ public class EmuHandMovement : MonoBehaviour {
     public string fireButton;
     public int startLane;
     public float shotDelay;
+    public float shotTimeout;
     public bool isEmu;
     public GameObject emu;
     public GameObject bullet;
@@ -29,6 +30,7 @@ public class EmuHandMovement : MonoBehaviour {
     private SpriteRenderer sprite;
     private bool gameOverSwap;
     private float lastShot;
+    private All_Screens_Manager pause;
 
 	// Use this for initialization
 	void Start () {
@@ -38,12 +40,13 @@ public class EmuHandMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         gManager = FindObjectOfType<EmuGameManager>();
         anim = GetComponent<Animator>();
+        pause = FindObjectOfType<All_Screens_Manager>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(gManager.gameOver || gManager.gameNotStarted)
+        if(gManager.gameOver || gManager.gameNotStarted || pause.paused)
         {
             return;
         }
@@ -95,10 +98,21 @@ public class EmuHandMovement : MonoBehaviour {
                 }
             }
         }
+        if (isEmu)
+        {
+            if (Time.time > lastShot + shotTimeout)
+            {
+                Instantiate(emu, projectileSpawner.transform.position, Quaternion.identity);
+                lastShot = Time.time;
+            }
+        }
     }
 
     void FixedUpdate()
     {
+        if (pause.paused)
+            return;
+
         if (gManager.gameOver)
         {
             if (!gameOverSwap)

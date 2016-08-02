@@ -28,6 +28,7 @@ public class SwitchesGameManager : MonoBehaviour {
     public bool draw;
 
     private float startTime;
+    private All_Screens_Manager pause;
 
     // Use this for initialization
     void Start () {
@@ -40,12 +41,17 @@ public class SwitchesGameManager : MonoBehaviour {
         //drawAnthem.SetActive(false);
         gameEndButtons.SetActive(false);
 
+        pause = FindObjectOfType<All_Screens_Manager>();
+
         startTime = Time.time;
         gameNotStarted = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (pause.paused)
+            return;
 
         if (gameNotStarted)
         {
@@ -61,6 +67,7 @@ public class SwitchesGameManager : MonoBehaviour {
         if (((startTime + startDelay) - Time.time) < -1)
         {
             countdown.text = "";
+            pause.startGame = false;
         }
 
         rusNumber.text = "0" + rusSwitches.ToString();

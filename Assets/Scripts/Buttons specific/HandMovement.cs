@@ -14,16 +14,20 @@ public class HandMovement : MonoBehaviour
     private float moveY;
     private Rigidbody2D rb;
     private Animator anim;
+    private All_Screens_Manager pause;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        pause = FindObjectOfType<All_Screens_Manager>();
     }
 
     void FixedUpdate()
     {
+        if (pause.paused)
+            return;
         moveX = Input.GetAxis(xAxesName);
         moveY = Input.GetAxis(yAxesName);
         rb.velocity = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
@@ -32,6 +36,9 @@ public class HandMovement : MonoBehaviour
 
     void Update()
     {
+        if (pause.paused)
+            return;
+
         if (attackHand)
         {
             if (isRussia)

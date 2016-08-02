@@ -17,19 +17,21 @@ public class SwitchesHandMovement : MonoBehaviour {
     private int currentButton;
     private bool moving;
     private Rigidbody2D rb;
+    private All_Screens_Manager pause;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         transform.position = buttons[startButton].transform.position;
         currentButton = startButton;
         rb = GetComponent<Rigidbody2D>();
         gManager = FindObjectOfType<SwitchesGameManager>();
-	}
+        pause = FindObjectOfType<All_Screens_Manager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
-        if(gManager.gameOver || gManager.gameNotStarted)
+        if(gManager.gameOver || gManager.gameNotStarted || pause.paused)
         {
             return;
         }

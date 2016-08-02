@@ -27,6 +27,7 @@ public class EmuGameManager : MonoBehaviour
     public bool draw;
 
     private float startTime;
+    private All_Screens_Manager pause;
 
     void Awake()
     {
@@ -38,12 +39,16 @@ public class EmuGameManager : MonoBehaviour
         //drawAnthem.SetActive(false);
         afterGameButtons.SetActive(false);
 
+        pause = FindObjectOfType<All_Screens_Manager>();
+
         startTime = Time.time;
         gameNotStarted = true;
     }
 
     void Update()
     {
+        if (pause.paused)
+            return;
 
         if (gameNotStarted)
         {
@@ -59,6 +64,7 @@ public class EmuGameManager : MonoBehaviour
         if (((startTime + startDelay) - Time.time) < -1)
         {
             countdown.text = "";
+            pause.startGame = false;
         }
         
         emuNumber.text = emusZoned.ToString();

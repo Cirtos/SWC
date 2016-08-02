@@ -24,6 +24,7 @@ public class FalkHandMovement : MonoBehaviour {
     private GameObject voterOver;
     private bool holdingEnemyVoter;
     private FalkGameManager gManager;
+    private All_Screens_Manager pause;
 
     // Use this for initialization
     void Start()
@@ -33,10 +34,14 @@ public class FalkHandMovement : MonoBehaviour {
         gManager = FindObjectOfType<FalkGameManager>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        pause = FindObjectOfType<All_Screens_Manager>();
     }
 
     void FixedUpdate()
     {
+        if (pause.paused)
+            return;
+
         moveX = Input.GetAxis(xAxesName);
         moveY = Input.GetAxis(yAxesName);
         rb.velocity = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
@@ -45,7 +50,7 @@ public class FalkHandMovement : MonoBehaviour {
     void Update()
     {
 
-        if (gManager.gameOver || gManager.gameNotStarted)
+        if (gManager.gameOver || gManager.gameNotStarted || pause.paused)
         {
             return;
         }

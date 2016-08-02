@@ -18,6 +18,7 @@ public class Mode_Select : MonoBehaviour {
     void Start () {
         modeButtons = FindObjectsOfType<Mode_Select>();
         sprite = GetComponent<SpriteRenderer>();
+        modeConfirm = FindObjectOfType<Mode_Confirm>();
     }
 
     // Update is called once per frame
