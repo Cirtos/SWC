@@ -61,18 +61,25 @@ public class Pause_Hands : MonoBehaviour {
         {
             if (currentLane == 2)
             {
-                Application.LoadLevel("Menu");
-                pause.ClearPause();
+                transform.position = lanes[0].transform.position;
                 currentLane = 0;
+                pause.ClearPause();
+                Application.LoadLevel("Menu");
+                
             }
             else if (currentLane == 1)
             {
-                Application.LoadLevel(Application.loadedLevel);
-                pause.ClearPause();
+                transform.position = lanes[0].transform.position;
                 currentLane = 0;
+                pause.ClearPause();
+                Application.LoadLevel(Application.loadedLevel);
             }
             else
+            {
                 pause.ClearPause();
+                pause.ReturnCanvas();
+                currentLane = 0;
+            }
         }       
     }
 }

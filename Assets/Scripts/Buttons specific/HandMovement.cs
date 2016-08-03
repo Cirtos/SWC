@@ -27,11 +27,14 @@ public class HandMovement : MonoBehaviour
     void FixedUpdate()
     {
         if (pause.paused)
+        {
+            rb.velocity = new Vector2(moveX * 0, moveY * 0);
             return;
+        }
+
         moveX = Input.GetAxis(xAxesName);
         moveY = Input.GetAxis(yAxesName);
         rb.velocity = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
- 
     }
 
     void Update()

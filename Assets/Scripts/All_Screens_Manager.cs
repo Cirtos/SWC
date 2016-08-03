@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class All_Screens_Manager : MonoBehaviour {
 
@@ -38,12 +39,14 @@ public class All_Screens_Manager : MonoBehaviour {
         {
             if (Input.GetKeyDown("joystick 1 button 7"))
             {
+                HideCanvas();
                 paused = true;
                 blueHand.SetActive(true);
                 pauseMenu.SetActive(true);
             }
             if (Input.GetKeyDown("joystick 2 button 7"))
             {
+                HideCanvas();
                 paused = true;
                 redHand.SetActive(true);
                 pauseMenu.SetActive(true);
@@ -57,5 +60,31 @@ public class All_Screens_Manager : MonoBehaviour {
         redHand.SetActive(false);
         pauseMenu.SetActive(false);
         paused = false;
+    }
+
+    public void HideCanvas()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        Text[] texts = canvas.GetComponentsInChildren<Text>();
+
+        foreach (Text t in texts)
+        {
+            Color temp = t.color;
+            temp.a = 0f;
+            t.color = temp;
+        }
+    }
+
+    public void ReturnCanvas()
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+        Text[] texts = canvas.GetComponentsInChildren<Text>();
+
+        foreach (Text t in texts)
+        {
+            Color temp = t.color;
+            temp.a = 1f;
+            t.color = temp;
+        }
     }
 }

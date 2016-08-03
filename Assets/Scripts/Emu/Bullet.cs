@@ -8,9 +8,11 @@ public class Bullet : MonoBehaviour {
     private EmuGameManager gManager;
     private Rigidbody2D rb;
     private EmuProjectile hitEmu;
+    private All_Screens_Manager pause;
 
 	// Use this for initialization
 	void Start () {
+        pause = FindObjectOfType<All_Screens_Manager>();
         gManager = FindObjectOfType<EmuGameManager>();
         rb = GetComponent<Rigidbody2D>();
 	}
@@ -21,7 +23,11 @@ public class Bullet : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        rb.velocity = transform.right * moveSpeed;
+
+        if (pause.paused)
+            rb.velocity = transform.right * 0;
+        else
+            rb.velocity = transform.right * moveSpeed;
 	}
 
     void OnTriggerEnter2D(Collider2D col)
