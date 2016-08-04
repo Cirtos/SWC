@@ -84,7 +84,7 @@ public class FalkHandMovement : MonoBehaviour {
             {
                 if (voterAle == "ARG" && Input.GetButtonDown(fireButton))
                 {
-                    voterOver.GetComponent<Voter>().Removal();
+                    voterOver.GetComponentInParent<Voter>().Removal();
                     holding = true;
                     holdingEnemyVoter = true;
                 }
@@ -93,7 +93,7 @@ public class FalkHandMovement : MonoBehaviour {
             {
                 if (voterAle == "GBR" && Input.GetButtonDown(fireButton))
                 {
-                    voterOver.GetComponent<Voter>().Removal();
+                    voterOver.GetComponentInParent<Voter>().Removal();
                     holding = true;
                     holdingEnemyVoter = true;
                 }

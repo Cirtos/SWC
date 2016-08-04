@@ -83,7 +83,6 @@ public class Buttons_Reset : MonoBehaviour {
     {
         focus = true;
         colTag = col.gameObject.tag;
-        print(col.name);
     }
 
     void OnTriggerExit2D(Collider2D col)

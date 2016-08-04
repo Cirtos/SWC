@@ -48,14 +48,22 @@ public class HandMovement : MonoBehaviour
             {
                 if (Input.GetButtonDown(axesName))
                 {
-                     anim.SetTrigger("RusPressed");
+                     anim.SetBool("RusPressed", true);
+                }
+                if (Input.GetButtonUp(axesName))
+                {
+                    anim.SetBool("RusPressed", false);
                 }
             }
             else if (!isRussia)
             {
                 if (Input.GetButtonDown(axesName))
                 {
-                    anim.SetTrigger("MurPressed");
+                    anim.SetBool("MurPressed", true);
+                }
+                if (Input.GetButtonUp(axesName))
+                {
+                    anim.SetBool("MurPressed", false);
                 }
             }
         }

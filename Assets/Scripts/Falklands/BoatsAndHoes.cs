@@ -47,7 +47,7 @@ public class BoatsAndHoes : MonoBehaviour {
             }
             else if (col.gameObject.tag == "GBRvoter")
             {
-                Voter vote = col.GetComponent<Voter>();
+                Voter vote = col.GetComponentInParent<Voter>();
                 if (!vote.onLand)
                 {
                     voterCount++;
@@ -63,7 +63,7 @@ public class BoatsAndHoes : MonoBehaviour {
             }
             else if (col.gameObject.tag == "ARGvoter")
             {
-                Voter vote = col.GetComponent<Voter>();
+                Voter vote = col.GetComponentInParent<Voter>();
                 if (!vote.onLand)
                 {
                     voterCount++;
