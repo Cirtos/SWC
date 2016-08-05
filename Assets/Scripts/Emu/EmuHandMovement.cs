@@ -20,6 +20,7 @@ public class EmuHandMovement : MonoBehaviour {
     public Sprite p2Hand;
     public Transform projectileSpawner;
     public Animator anim;
+    public AudioClip fire;
 
     private EmuGameManager gManager;
     private float moveX;
@@ -31,6 +32,7 @@ public class EmuHandMovement : MonoBehaviour {
     private bool gameOverSwap;
     private float lastShot;
     private All_Screens_Manager pause;
+    private AudioSource audi;
 
 	// Use this for initialization
 	void Start () {
@@ -41,6 +43,7 @@ public class EmuHandMovement : MonoBehaviour {
         gManager = FindObjectOfType<EmuGameManager>();
         anim = GetComponent<Animator>();
         pause = FindObjectOfType<All_Screens_Manager>();
+        audi = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -95,6 +98,7 @@ public class EmuHandMovement : MonoBehaviour {
                     Instantiate(bullet, projectileSpawner.transform.position, Quaternion.identity);
                     anim.SetTrigger("Shoot");
                     lastShot = Time.time;
+                    audi.PlayOneShot(fire, 0.5f);
                 }
             }
         }

@@ -34,7 +34,7 @@ public class FalkGameManager : MonoBehaviour {
         ameAnthem.SetActive(false);
         rusAnthem.SetActive(false);
         drawPaper.SetActive(false);
-        //drawAnthem.SetActive(false);
+        drawAnthem.SetActive(false);
         ruskieswin.SetActive(false);
         muricawin.SetActive(false);
         afterGameButtons.SetActive(false);
@@ -109,7 +109,7 @@ public class FalkGameManager : MonoBehaviour {
             {
                 draw = true;
                 drawPaper.SetActive(true);
-                //drawAnthem.SetActive(true);
+                drawAnthem.SetActive(true);
             }
 
             gameOver = true;

@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
         ruskieswin.SetActive(false);
         muricawin.SetActive(false);
         drawPaper.SetActive(false);
-        //drawAnthem.SetActive(false);
+        drawAnthem.SetActive(false);
         afterGameButtons.SetActive(false);
 
         pause = FindObjectOfType<All_Screens_Manager>();
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour {
         {
             draw = true;
             drawPaper.SetActive(true);
-            //drawAnthem.SetActive(true);
+            drawAnthem.SetActive(true);
             gameoveryeh = true;
             levelTimer.StopTimer();
             bg.Victory();

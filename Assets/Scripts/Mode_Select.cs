@@ -6,6 +6,7 @@ public class Mode_Select : MonoBehaviour {
     public string levelToLoad;
     public Sprite button;
     public Sprite buttonPressed;
+    public AudioClip pressSound;
 
     private SpriteRenderer sprite;
     private Mode_Confirm modeConfirm;
@@ -13,12 +14,15 @@ public class Mode_Select : MonoBehaviour {
     private Mode_Select[] modeButtons;
     private bool focus;
     private string colTag;
+    private AudioSource audi;
+    private bool hasPlayed;
 
     // Use this for initialization
     void Start () {
         modeButtons = FindObjectsOfType<Mode_Select>();
         sprite = GetComponent<SpriteRenderer>();
         modeConfirm = FindObjectOfType<Mode_Confirm>();
+        audi = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +32,9 @@ public class Mode_Select : MonoBehaviour {
             sprite.sprite = buttonPressed;
         else
             sprite.sprite = button;
+
+        if (!selected)
+            hasPlayed = false;
 
         if (focus == true)
         {
@@ -42,6 +49,11 @@ public class Mode_Select : MonoBehaviour {
 
                     selected = true;
                     modeConfirm.levelToLoad = levelToLoad;
+                    if (!hasPlayed)
+                    {
+                        audi.PlayOneShot(pressSound, 1f);
+                        hasPlayed = true;
+                    }
                 }
             }
 
@@ -56,6 +68,11 @@ public class Mode_Select : MonoBehaviour {
 
                     selected = true;
                     modeConfirm.levelToLoad = levelToLoad;
+                    if (!hasPlayed)
+                    {
+                        audi.PlayOneShot(pressSound, 1f);
+                        hasPlayed = true;
+                    }
                 }
             }
         }

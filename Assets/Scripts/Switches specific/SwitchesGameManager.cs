@@ -38,7 +38,7 @@ public class SwitchesGameManager : MonoBehaviour {
         ruskieswin.SetActive(false);
         muricawin.SetActive(false);
         drawPaper.SetActive(false);
-        //drawAnthem.SetActive(false);
+        drawAnthem.SetActive(false);
         gameEndButtons.SetActive(false);
 
         pause = FindObjectOfType<All_Screens_Manager>();
@@ -85,7 +85,7 @@ public class SwitchesGameManager : MonoBehaviour {
         if (levelTimer.roundTime <= 0)
         {
             drawPaper.SetActive(true);
-            //drawAnthem.SetActive(true);
+            drawAnthem.SetActive(true);
             draw = true;
             gameOver = true;
             levelTimer.StopTimer();

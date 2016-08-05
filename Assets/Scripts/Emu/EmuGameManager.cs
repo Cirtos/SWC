@@ -36,7 +36,7 @@ public class EmuGameManager : MonoBehaviour
         ausWinPaper.SetActive(false);
         emuWinPaper.SetActive(false);
         drawPaper.SetActive(false);
-        //drawAnthem.SetActive(false);
+        drawAnthem.SetActive(false);
         afterGameButtons.SetActive(false);
 
         pause = FindObjectOfType<All_Screens_Manager>();
@@ -88,7 +88,7 @@ public class EmuGameManager : MonoBehaviour
             {
                 draw = true;
                 drawPaper.SetActive(true);
-                //drawAnthem.SetActive(true);
+                drawAnthem.SetActive(true);
             }
 
             levelTimer.StopTimer();

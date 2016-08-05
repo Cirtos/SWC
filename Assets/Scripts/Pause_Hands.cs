@@ -8,11 +8,14 @@ public class Pause_Hands : MonoBehaviour {
     public string yAxesName;
     public string fireButton;
     public int startLane;
+    public AudioClip move;
+    public AudioClip select;
 
     private All_Screens_Manager pause;
     private float moveY;
     private int currentLane;
     private bool moving;
+    private AudioSource audi;
 
     // Use this for initialization
     void Start()
@@ -20,6 +23,7 @@ public class Pause_Hands : MonoBehaviour {
         transform.position = lanes[startLane].transform.position;
         currentLane = startLane;
         pause = FindObjectOfType<All_Screens_Manager>();
+        audi = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +36,7 @@ public class Pause_Hands : MonoBehaviour {
             moving = false;
         if (moveY > 0.5 && !moving)
         {
+            audi.PlayOneShot(move, 1f);
             if (currentLane == 0)
             {
                 transform.position = lanes[lanes.Length - 1].transform.position;
@@ -45,6 +50,7 @@ public class Pause_Hands : MonoBehaviour {
         }
         if (moveY < -0.5 && !moving)
         {
+            audi.PlayOneShot(move, 1f);
             if (currentLane == lanes.Length - 1)
             {
                 transform.position = lanes[0].transform.position;
@@ -59,6 +65,7 @@ public class Pause_Hands : MonoBehaviour {
 
         if (Input.GetButtonDown(fireButton))
         {
+            audi.PlayOneShot(select, 1f);
             if (currentLane == 2)
             {
                 transform.position = lanes[0].transform.position;

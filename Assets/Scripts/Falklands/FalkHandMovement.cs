@@ -14,6 +14,7 @@ public class FalkHandMovement : MonoBehaviour {
     public GameObject voterHold;
     public GameObject enemyVoterHold;
     public Transform finger;
+    public AudioClip[] enemyShouts;
     
     private float moveX;
     private float moveY;
@@ -25,6 +26,7 @@ public class FalkHandMovement : MonoBehaviour {
     private bool holdingEnemyVoter;
     private FalkGameManager gManager;
     private All_Screens_Manager pause;
+    private AudioSource audi;
 
     // Use this for initialization
     void Start()
@@ -35,12 +37,16 @@ public class FalkHandMovement : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         pause = FindObjectOfType<All_Screens_Manager>();
+        audi = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
     {
         if (pause.paused)
+        {
+            rb.velocity = new Vector2(moveX * 0, moveY * 0);
             return;
+        }
 
         moveX = Input.GetAxis(xAxesName);
         moveY = Input.GetAxis(yAxesName);
@@ -87,6 +93,8 @@ public class FalkHandMovement : MonoBehaviour {
                     voterOver.GetComponentInParent<Voter>().Removal();
                     holding = true;
                     holdingEnemyVoter = true;
+                    int clipToPlay = Random.Range(0, enemyShouts.Length -1);
+                    audi.PlayOneShot(enemyShouts[clipToPlay], 1f);
                 }
             }
             else
@@ -96,6 +104,8 @@ public class FalkHandMovement : MonoBehaviour {
                     voterOver.GetComponentInParent<Voter>().Removal();
                     holding = true;
                     holdingEnemyVoter = true;
+                    int clipToPlay = Random.Range(0, enemyShouts.Length -1);
+                    audi.PlayOneShot(enemyShouts[clipToPlay], 1f);
                 }
             }
         }

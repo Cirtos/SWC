@@ -13,12 +13,17 @@ public class Mode_Confirm : MonoBehaviour
     public GameObject argyBargy;
     public GameObject background;
     public GameObject cont;
+    public AudioClip flip;
+    public AudioClip press;
 
     private bool focus;
     private string colTag;
     private SpriteRenderer sprite;
     private bool displayRules;
     private Mode_Confirm mode;
+    private AudioSource audi;
+    private bool hasPlayed;
+    private bool hasPlayed1;
 
     // Use this for initialization
     void Start()
@@ -30,14 +35,21 @@ public class Mode_Confirm : MonoBehaviour
         emus.SetActive(false);
         background.SetActive(false);
         cont.SetActive(false);
-
+        audi = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (levelToLoad != "")
+        {
             sprite.sprite = notPressed;
+            if (!hasPlayed)
+            {
+                audi.PlayOneShot(flip, 1f);
+                hasPlayed = true;
+            }
+        }
         else if (levelToLoad == "")
             sprite.sprite = nukeUnprimed;
 
@@ -45,6 +57,11 @@ public class Mode_Confirm : MonoBehaviour
         {
             background.SetActive(true);
             cont.SetActive(true);
+            if (!hasPlayed1)
+            {
+                audi.PlayOneShot(press, 1f);
+                hasPlayed1 = true;
+            }
 
             if (levelToLoad == "Main")
             {
@@ -94,8 +111,6 @@ public class Mode_Confirm : MonoBehaviour
                 }
             }
         }
-
-        
     }
 
     void OnTriggerEnter2D(Collider2D col)
