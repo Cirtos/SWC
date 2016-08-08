@@ -4,6 +4,7 @@ using System.Collections;
 public class Buttons_Reset : MonoBehaviour {
 
     public Sprite red;
+    public Sprite orange;
     public Sprite green;
     public float resetTime;
     public Button[] buttons;
@@ -48,7 +49,10 @@ public class Buttons_Reset : MonoBehaviour {
                 if (colTag == "Russia" && isRussia)
                 {
                     if (Input.GetButtonDown("P2 Fire"))
+                    {
                         buttonDown = Time.time;
+                        sprite.sprite = orange;
+                    }
                     if (Input.GetButton("P2 Fire"))
                     {
                         if (Time.time > (buttonDown + resetTime))
@@ -63,7 +67,10 @@ public class Buttons_Reset : MonoBehaviour {
                 else if (colTag == "America" && !isRussia)
                 {
                     if (Input.GetButtonDown("P1 Fire"))
+                    {
                         buttonDown = Time.time;
+                        sprite.sprite = orange;
+                    }
                     if (Input.GetButton("P1 Fire"))
                     {
                         if (Time.time > (buttonDown + resetTime))
