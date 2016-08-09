@@ -27,7 +27,7 @@ public class FadeIn : MonoBehaviour
         sprite.color = new Color(1f, 1f, 1f, Mathf.SmoothStep(minimum, maximum, t));
         if (disableTillFaded)
         {
-            if(sprite.color.a >= 1)
+            if(Time.time > (startTime/2))
             {
                 col.enabled = true;
             }

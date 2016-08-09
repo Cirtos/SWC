@@ -15,6 +15,8 @@ public class Mode_Confirm : MonoBehaviour
     public GameObject cont;
     public AudioClip flip;
     public AudioClip press;
+    public GameObject redHand;
+    public GameObject blueHand;
 
     private bool focus;
     private string colTag;
@@ -55,6 +57,8 @@ public class Mode_Confirm : MonoBehaviour
 
         if (displayRules)
         {
+            redHand.SetActive(false);
+            blueHand.SetActive(false);
             background.SetActive(true);
             cont.SetActive(true);
             if (!hasPlayed1)

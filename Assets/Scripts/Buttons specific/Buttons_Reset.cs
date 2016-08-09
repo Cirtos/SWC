@@ -51,10 +51,11 @@ public class Buttons_Reset : MonoBehaviour {
                     if (Input.GetButtonDown("P2 Fire"))
                     {
                         buttonDown = Time.time;
-                        sprite.sprite = orange;
                     }
                     if (Input.GetButton("P2 Fire"))
                     {
+                        if (gManager.ameButtonCount >= 1)
+                            sprite.sprite = orange;
                         if (Time.time > (buttonDown + resetTime))
                         {
                             foreach (Button button in buttons)
@@ -69,10 +70,12 @@ public class Buttons_Reset : MonoBehaviour {
                     if (Input.GetButtonDown("P1 Fire"))
                     {
                         buttonDown = Time.time;
-                        sprite.sprite = orange;
+                        
                     }
                     if (Input.GetButton("P1 Fire"))
                     {
+                        if (gManager.rusButtonCount >= 1)
+                            sprite.sprite = orange;
                         if (Time.time > (buttonDown + resetTime))
                         {
                             foreach (Button button in buttons)
@@ -83,6 +86,8 @@ public class Buttons_Reset : MonoBehaviour {
                     }
                 }
             }
+            if (!focus)
+                buttonDown = Time.time;
         }
     }
 

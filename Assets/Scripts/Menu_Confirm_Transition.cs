@@ -12,8 +12,7 @@ public class Menu_Confirm_Transition : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -36,10 +35,11 @@ public class Menu_Confirm_Transition : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         focus = true;
-        colTag = col.gameObject.tag;
+        if(col.gameObject.tag == "America" || col.gameObject.tag == "Russia")
+            colTag = col.gameObject.tag;
     }
 
     void OnTriggerExit2D(Collider2D col)
